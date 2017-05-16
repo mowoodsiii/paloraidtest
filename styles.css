@@ -1,0 +1,36 @@
+.center {
+        margin: auto;
+        width: 60%;
+        border: 3px solid #80ff80;
+        padding: 25px;
+        margin-top: 50px;
+        font-family:"Trebuchet MS", Helvetica, sans-serif;
+        text-align: justify;
+    }
+    .yellow {
+        font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+        color: #e5c138;
+
+    }
+    
+    .blue {
+        color: #37a8ed;
+    }
+    
+    a:link {
+        text-decoration: none;
+        color: #37a8ed;
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: #ff0088;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    a:active {
+        text-decoration: underline;
+    }
