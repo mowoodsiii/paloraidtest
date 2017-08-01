@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>paloraid - QSG</title>
-</head>
-
-<body style="background-color:#2a211c;">
-    
-    <a href="index.html">Go Back</a>
-    <a href="#h.17dp8vu" target="docu">Test</a>
-    <div class="outterblock" style="background-color:#3b322d ;color:#bead9d; width:600px;">
-        <h2 class="blue"><span class="code">Quick Start Guide</span> Test of embedded GDrive Documents <br></h2>
-        <p>Here is a Quick Start Guide from the CU Boulder Aerospace CubeSat grad team:</p>        
-    </div>
-    
-    <div class="outterblock" style="background-color:#3b322d ;color:#bead9d; width:700px; height:1100px;">
-        <iframe width="100%" height="100%" id="docu" src="https://docs.google.com/document/d/1W8UUw5Ug43tzC6rMIjspubMAqSCrfZ4psCD28H0ZKRo/pub?embedded=true"></iframe>
-    </div>
-    
-    <div class="outterblock" style="background-color:#3b322d ;color:#bead9d; width:700px; height:1100px;">
-        <iframe width="100%" height="100%" id="trello" src="https://trello.com/b/9vNX7wb8.html"></iframe>
-    </div>
-
-</body>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <title>paloraid - QSG</title>
+    </head>
+    <body style="background-color:#2a211c;">
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <a href="new.html">New Members</a>
+            <a href="projects.html">Projects</a>
+        </div>
+        <div class="wrapper">
+            <div class="clearblock">
+                <img width="230px" src="./images/logo_cue3.png">
+            </div>
+            <div class="outterblock" style="background-color:#3b322d ;color:#bead9d; width:100%;">
+                <h2 class="blue"><span class="code">Quick Start Guide</span> Test of embedded GDrive Documents <br></h2>
+                <p>Here is a Quick Start Guide from the CU Boulder Aerospace CubeSat grad team:</p>        
+            </div>
+            <div class="outterblock" style="background-color:#3b322d ;color:#bead9d; width:100%; height:1100px;">
+                <iframe width="100%" height="100%" id="docu" src="https://docs.google.com/document/d/1W8UUw5Ug43tzC6rMIjspubMAqSCrfZ4psCD28H0ZKRo/pub?embedded=true"></iframe>
+            </div>
+            <div class="outterblock" style="background-color:#3b322d ;color:#bead9d; width:150%; height:100%;">
+                <iframe width="100%" height="600px" id="trello" src="https://trello.com/b/9vNX7wb8.html"></iframe>
+            </div>
+            <?php
+                $spreadsheet_url="https://docs.google.com/spreadsheets/d/1xc7iWCNk5ZuZHKcXjSPPkN3VLl1cf4ud95LcEZQrvgc/pub?gid=0&single=true&output=csv";                  
+                if(!ini_set('default_socket_timeout', 15)){
+                    echo "<!-- unable to change socket timeout -->";
+                }
+                if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
+                    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                        $spreadsheet_data[] = $data;
+                    }
+                    fclose($handle);
+                }
+                else
+                    die("Problem reading csv");
+            ?>
+            echo $spreadsheet_data
+        </div>
+    </body>
 </html>
 
 
 <!-- Notes:
-
+    - Read a Google Sheet using PHP: https://stackoverflow.com/questions/14780804/how-do-i-read-a-google-drive-spreadsheet-in-php
     - Following ID/target links in iframes: https://www.thoughtco.com/targeting-links-in-frames-3468670
     - Embed Trello: http://jsfiddle.net/danlec/hmQJP/
     
